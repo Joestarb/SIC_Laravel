@@ -22,10 +22,12 @@ class StudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'student_name' => 'bail|required|alpha',
-            'email_student' => 'bail|required|email',
-            'matricula' => 'bail|required|string', // O alpha_num dependiendo de lo que represente la matrícula
-            'password' => 'bail|required|max:20', // O entre dos valores si deseas especificar un mínimo y un máximo
+            'name_student' => 'bail|required|alpha',
+            'lastname_student' => 'bail|required|alpha',
+            'id_student' => 'bail|required|string',
+            'birthdate' => 'bail|required|date',
+            'comments' => 'nullable|string',
         ];
     }
 }
+
