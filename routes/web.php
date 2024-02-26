@@ -1,17 +1,40 @@
 <?php
 
+use App\Http\Controllers\ForbiddenController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get("/student", [StudentController::class, "index"])->name("student");
+Route::get("/student/create", [StudentController::class, "create"])->name("create");
+Route::post("/student/create", [StudentController::class, "store"]);
+
+Route::get("/403", [ForbiddenController::class, "index"])->name("403");
+
+
+Route::middleware('auth')->group(function () { 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('students', StudentController::class);
-
-
+require __DIR__.'/auth.php';
