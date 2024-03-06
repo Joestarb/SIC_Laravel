@@ -3,6 +3,8 @@
 use App\Http\Controllers\ForbiddenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +26,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get("/student", [StudentController::class, "index"])->name("student");
-Route::get("/student/create", [StudentController::class, "create"])->name("create");
-Route::post("/student/create", [StudentController::class, "store"]);
+Route::resource("students", StudentController::class);
+Route::resource("subjects", SubjectController::class);
 
 Route::get("/403", [ForbiddenController::class, "index"])->name("403");
 

@@ -8,18 +8,14 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware("auth");
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students=Student::all();
-        return view('CrudStudents/students',compact('students'));
+        // $students=Student::all();
+        $students = Student::paginate(10);
+        return view('CrudStudents.students', compact('students'));
     }
 
     /**
@@ -46,32 +42,49 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->route('student')->with('success', 'Estudiante registrado exitosamente');
+        return redirect()->route('students.index')->with('success', 'Estudiante registrado exitosamente');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $student = Student::find($id);
+        return view('CrudStudents.student', compact('student'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $student = Student::find($id);
+    
+        return view('CrudStudents.student-edit', compact('student'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    
+    public function update(StudentRequest $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+        
+        $student = Student::find($id);
+    
+        if (!$student) {
+            return redirect()->route('students.index')->with('error', 'Estudiante no encontrado.');
+        }
+    
+        $student->update([
+            'name_student' => $validatedData['name_student'],
+            'lastname_student' => $validatedData['lastname_student'],
+            'id_student' => $validatedData['id_student'],
+            'birthdate' => $validatedData['birthdate'],
+            'comments' => $validatedData['comments'],
+        ]);
+    
+        return redirect()->route('students.show', $student->id)->with('success', 'Estudiante actualizado exitosamente.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
