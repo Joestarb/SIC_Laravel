@@ -42,7 +42,7 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->route('student')->with('success', 'Estudiante registrado exitosamente');
+        return redirect()->route('students.index')->with('success', 'Estudiante registrado exitosamente');
     }
 
     /**

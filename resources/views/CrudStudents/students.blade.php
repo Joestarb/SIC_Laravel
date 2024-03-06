@@ -2,7 +2,7 @@
 @vite('resources/css/app.css')
 
 @section('sidebar')
-<a href="/student/create" class="mt-4 bg-emerald-500 rounded-md p-2 text-white text-sm font-semibold absolute top-16 right-20 hover:bg-emerald-600">
+<a href="/students/create" class="mt-4 bg-emerald-500 rounded-md p-2 text-white text-sm font-semibold absolute top-16 right-20 hover:bg-emerald-600">
     Agregar nuevo alumno
 </a>
 

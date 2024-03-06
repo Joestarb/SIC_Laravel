@@ -11,7 +11,7 @@
 
     <main class="flex items-center justify-center h-screen">
         @yield('formUsers')
-        <form method="POST" id="formAlumno" class="bg-white rounded-lg p-8 w-96 space-y-4 shadow-md">
+        <form method="POST" id="formAlumno" action="{{ route('students.store') }}" class="bg-white rounded-lg p-8 w-96 space-y-4 shadow-md">
             <h3 class="text-xl text-center font-medium">Agregar estudiante</h3>
             @csrf
 
