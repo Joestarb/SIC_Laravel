@@ -1,12 +1,10 @@
 @extends('plantilla')
+@extends('CrudStudents.form')
 @vite('resources/css/app.css')
 
 @section('sidebar')
-<a href="/students/create" class="mt-4 bg-emerald-500 rounded-md p-2 text-white text-sm font-semibold absolute top-16 right-20 hover:bg-emerald-600">
-    Agregar nuevo alumno
-</a>
 
-<h1 class="text-center text-3xl mt-20 mb-6 font-semibold">Lista de Estudiantes</h1>
+<h1 class="text-center text-3xl mt-20 mb-6 font-semibold  -z">Lista de Estudiantes</h1>
 
 <div class="flex flex-col justify-center my-4 px-10">
     <table class="w-full bg-white rounded-md overflow-hidden">
@@ -37,7 +35,13 @@
                 </td>
                 <td>
                     <a href="{{ route('students.edit', $student->id) }}">Editar</a>
-                </td>
+                    <form method="POST" action="{{route('students.destroy', $student->id)}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este estudiante?')">Eliminar</button>
+                    </form>
+                  
+                     </td>
             </tr>
             @endforeach
         </tbody>

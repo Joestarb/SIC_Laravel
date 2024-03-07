@@ -1,24 +1,30 @@
 @extends('plantilla')
+@section('sidebar')
+@vite('resources/css/app.css')
 
-<div class="min-h-screen flex items-center justify-center">
-    <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-md shadow-md z-50 p-10">
-        <h1 class="text-2xl font-bold mb-4">{{ $student->name_student }} {{ $student->lastname_student }}</h1>
+<div class="min-h-screen flex items-center justify-center -z-40">
+    <div class="max-w-3xl mx-auto mt-10 bg-white rounded-lg shadow-lg p-8">
+        <h1 class=" text-4xl font-bold ">Detalles del Alumno</h1>
+        <h1 class="text-3xl font-semibold mb-6">{{ $student->name_student }} {{ $student->lastname_student }}</h1>
 
-        <div class="grid grid-cols-2 gap-4">
-            <div class="col-span-2 md:col-span-1">
-                <p class="font-bold">Fecha de Nacimiento:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <p class="font-semibold">Fecha de Nacimiento:</p>
                 <p class="px-4 py-2 bg-gray-100 rounded-md">{{ $student->birthdate }}</p>
             </div>
 
-            <div class="col-span-2 md:col-span-1">
-                <p class="font-bold">Matrícula:</p>
+            <div>
+                <p class="font-semibold">Matrícula:</p>
                 <p class="px-4 py-2 bg-gray-100 rounded-md">{{ $student->id_student }}</p>
             </div>
 
             <div class="col-span-2">
-                <p class="font-bold">Comentarios:</p>
+                <p class="font-semibold">Comentarios:</p>
                 <p class="px-4 py-2 bg-gray-100 rounded-md">{{ $student->comments }}</p>
             </div>
+            <a href="/students"> Regresar</a>
         </div>
     </div>
 </div>
+
+@endsection

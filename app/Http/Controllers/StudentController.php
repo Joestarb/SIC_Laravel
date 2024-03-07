@@ -82,7 +82,7 @@ class StudentController extends Controller
             'comments' => $validatedData['comments'],
         ]);
     
-        return redirect()->route('students.show', $student->id)->with('success', 'Estudiante actualizado exitosamente.');
+        return redirect()->route('students.index')->with('success', 'Estudiante registrado exitosamente');
     }
     
 
@@ -91,6 +91,13 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = Student::find($id);
+        if(!$student){
+            return redirect()->route('students.index')->with('error', 'Estudiante no encontrado.');
+        }
+
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Estudiante eliminado exitosamente.');
+
     }
 }

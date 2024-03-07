@@ -1,6 +1,7 @@
 @vite('resources/css/app.css')
-
-<main class="flex items-center justify-center h-screen">
+@extends('plantilla')
+@section('sidebar')
+<main class="flex items-center bg-gray-100 justify-center h-screen mt-12">
     <form method="POST" action="{{ route('students.update', $student->id) }}" id="formAlumno" class="bg-white rounded-lg p-8 w-96 space-y-4 shadow-md">
         @csrf
         @method('PUT')
@@ -9,7 +10,7 @@
 
         <div>
             <label for="name_student" class="block text-gray-800 font-bold mb-2">Nombre</label>
-            <input type="text" id="name_student" name="name_student" placeholder="Nombre del Estudiante" class="border rounded-md py-2 px-3 text-gray-700" value="{{ old('name_student', $student->name_student) }}">
+            <input type="text" id="name_student" name="name_student" placeholder="Nombre del Estudiante" class="border rounded-md py-2 px-3 w-full text-gray-700" value="{{ old('name_student', $student->name_student) }}">
             @error('name_student')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -17,7 +18,7 @@
 
         <div>
             <label for="lastname_student" class="block text-gray-800 font-bold mb-2">Apellidos</label>
-            <input type="text" id="lastname_student" name="lastname_student" placeholder="Apellido del Estudiante" class="border rounded-md py-2 px-3 text-gray-700" value="{{ old('lastname_student', $student->lastname_student) }}">
+            <input type="text" id="lastname_student" name="lastname_student" placeholder="Apellido del Estudiante" class="border rounded-md py-2 px-3 w-full text-gray-700" value="{{ old('lastname_student', $student->lastname_student) }}">
             @error('lastname_student')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -25,7 +26,7 @@
 
         <div>
             <label for="id_student" class="block text-gray-800 font-bold mb-2">Matricula</label>
-            <input type="text" id="id_student" name="id_student" placeholder="ID del Estudiante" class="border rounded-md py-2 px-3 text-gray-700" value="{{ old('id_student', $student->id_student) }}">
+            <input type="text" id="id_student" name="id_student" placeholder="ID del Estudiante" class="border rounded-md py-2 px-3 w-full text-gray-700" value="{{ old('id_student', $student->id_student) }}">
             @error('id_student')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -33,7 +34,7 @@
 
         <div>
             <label for="birthdate" class="block text-gray-800 font-bold mb-2">Fecha de Nacimiento</label>
-            <input type="date" id="birthdate" name="birthdate" placeholder="Fecha de Nacimiento" class="border rounded-md py-2 px-3 text-gray-700" value="{{ old('birthdate', $student->birthdate) }}">
+            <input type="date" id="birthdate" name="birthdate" placeholder="Fecha de Nacimiento" class="border rounded-md py-2 px-3 w-full text-gray-700" value="{{ old('birthdate', $student->birthdate) }}">
             @error('birthdate')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -41,7 +42,7 @@
 
         <div>
             <label for="comments" class="block text-gray-800 font-bold mb-2">Comentarios</label>
-            <textarea id="comments" name="comments" placeholder="Comentarios" class="resize-none border rounded-md py-2 px-3 text-gray-700">{{ old('comments', $student->comments) }}</textarea>
+            <textarea id="comments" name="comments" placeholder="Comentarios" class="resize-none border rounded-md py-2 px-3 w-full text-gray-700">{{ old('comments', $student->comments) }}</textarea>
             @error('comments')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -53,3 +54,4 @@
         </div>
     </form>
 </main>
+@endsection
