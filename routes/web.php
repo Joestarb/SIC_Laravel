@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ForbiddenController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Models\Student;
@@ -28,8 +30,11 @@ Route::get('/dashboard', function () {
 
 Route::resource("students", StudentController::class);
 Route::resource("subjects", SubjectController::class);
+Route::resource("activities", ActivityController::class);
 
 Route::get("/403", [ForbiddenController::class, "index"])->name("403");
+
+Route::get("/cardex/{estudiante}", [ReportController::class, "printCardex"])->name("students.cardex");
 
 
 Route::middleware('auth')->group(function () { 

@@ -17,7 +17,7 @@
                 <th class="py-3 text-left text-sm font-medium text-gray-500 uppercase">ID</th>
                 <th class="py-3 text-left text-sm font-medium text-gray-500 uppercase">Fecha de Nacimiento</th>
                 <!-- <th class="py-3 text-left text-sm font-medium text-gray-500 uppercase">Comentarios</th> -->
-                <th class="py-3 text-left text-sm font-medium text-gray-500 uppercase">Acciones</th>
+                <th class="py-3 text-center text-sm font-medium text-gray-500 uppercase">Acciones</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -27,16 +27,12 @@
                 <td class="py-4 whitespace-nowrap">{{ $student->lastname_student }}</td>
                 <td class="py-4 whitespace-nowrap">{{ $student->id_student }}</td>
                 <td class="py-4 whitespace-nowrap">{{ $student->birthdate }}</td>
-                <!-- <td class="py-4 whitespace-nowrap overflow-hidden max-w-xs">
-                            <div class="truncate text-gray-600" title="{{ $student->comments }}">
-                                {{ $student->comments }}
-                            </div>
-                        </td> -->
                 <td>
-                    <a href="{{ route('students.show', $student->id) }}">Ver detalles</a>
-                </td>
-                <td>
-                    <a href="{{ route('students.edit', $student->id) }}">Editar</a>
+                    <div class="flex gap-3 justify-center">
+                        <a href="{{ route('students.show', $student->id) }}">Ver detalles</a>
+                        <a href="{{ route('students.edit', $student->id) }}">Editar</a>
+                        <a href="{{ route('students.cardex', $student->id) }}">Cardex</a>
+                    </div>
                 </td>
             </tr>
             @endforeach
